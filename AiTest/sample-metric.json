@@ -1,0 +1,32 @@
+{
+    "name": "Microsoft.ApplicationInsights.de1ad33da7514934b5407e0145216b5c.Metric",
+    "time": "2017-07-15T01:57:44.3280776Z",
+    "iKey": "de1ad33d-a751-4934-b540-7e0145216b5c",
+    "tags": {
+        "ai.cloud.roleInstance": "masimms-laptop.redmond.corp.microsoft.com",
+        "ai.internal.sdkVersion": "m-agg:2.4.0-32153"
+    },
+    "data": {
+        "baseType": "MetricData",
+        "baseData": {
+            "ver": 2,
+            "metrics": [
+                {
+                    "name": "Server response time",
+                    "kind": "Aggregation",
+                    "value": 5357.9806,
+                    "count": 1,
+                    "min": 5357.9806,
+                    "max": 5357.9806,
+                    "stdDev": 0
+                }
+            ],
+            "properties": {
+                "_MS.MetricId": "requests/duration",
+                "Request.Success": "False",
+                "_MS.AggregationIntervalMs": "115213",
+                "_MS.IsAutocollected": "True"
+            }
+        }
+    }
+}

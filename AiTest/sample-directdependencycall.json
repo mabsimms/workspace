@@ -1,0 +1,30 @@
+{
+    "name": "Microsoft.ApplicationInsights.de1ad33da7514934b5407e0145216b5c.RemoteDependency",
+    "time": "2017-07-15T02:00:41.0450520Z",
+    "iKey": "de1ad33d-a751-4934-b540-7e0145216b5c",
+    "tags": {
+        "ai.operation.parentId": "|HLh83uV9XPs=.2052e62a_",
+        "ai.operation.name": "GET values",
+        "ai.operation.id": "HLh83uV9XPs=",
+        "ai.location.ip": "::1",
+        "ai.cloud.roleInstance": "masimms-laptop.redmond.corp.microsoft.com",
+        "ai.internal.sdkVersion": "dotnet:2.4.0-32153"
+    },
+    "data": {
+        "baseType": "RemoteDependencyData",
+        "baseData": {
+            "ver": 2,
+            "name": "containerName",
+            "id": "W2Hf5+6I3dk=",
+            "data": "serviceCallName",
+            "duration": "00:00:05",
+            "resultCode": "200",
+            "success": true,
+            "type": "containerSvc",
+            "target": "instanceName",
+            "properties": {
+                "_MS.ProcessedByMetricExtractors": "(Name:'Dependencies', Ver:'1.0')"
+            }
+        }
+    }
+}

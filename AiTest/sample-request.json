@@ -1,0 +1,28 @@
+{
+    "name": "Microsoft.ApplicationInsights.de1ad33da7514934b5407e0145216b5c.Request",
+    "time": "2017-07-15T01:56:50.1421032Z",
+    "iKey": "de1ad33d-a751-4934-b540-7e0145216b5c",
+    "tags": {
+        "ai.internal.nodeName": "masimms-laptop.redmond.corp.microsoft.com",
+        "ai.operation.name": "GET Home/Index",
+        "ai.operation.id": "kBTE3NCZv/M=",
+        "ai.location.ip": "::1",
+        "ai.cloud.roleInstance": "masimms-laptop.redmond.corp.microsoft.com",
+        "ai.internal.sdkVersion": "web:2.4.1-1362"
+    },
+    "data": {
+        "baseType": "RequestData",
+        "baseData": {
+            "ver": 2,
+            "id": "|kBTE3NCZv/M=.2052e629_",
+            "name": "GET Home/Index",
+            "duration": "00:00:05.3579806",
+            "success": false,
+            "responseCode": "404",
+            "url": "http://localhost:62586/",
+            "properties": {
+                "_MS.ProcessedByMetricExtractors": "(Name:'Requests', Ver:'1.0')"
+            }
+        }
+    }
+}
