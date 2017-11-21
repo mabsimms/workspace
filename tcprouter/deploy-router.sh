@@ -33,6 +33,20 @@ ROUTER_USERNAME=routeradmin
 ROUTER_INSTANCE_COUNT=1
 ROUTER_SKU=Standard_DS4_v2
 ROUTER_PORT=5000
+ 
+TCP_POOL_USERNAME=tcpserveradmin
+TCP_POOL_SKU=Standard_DS4_v2
+TCP_POOL_LISTEN_PORT=5000
+
+TCP_POOL1_SUBNET=pool1-subnet
+TCP_POOL1_SUBNET_RANGE=10.1.4.0/24
+TCP_POOL1_VMSS_NAME=pool1-vmss
+TCP_POOL1_INSTANCE_COUNT=1
+ 
+TCP_POOL2_SUBNET=pool2-subnet
+TCP_POOL2_SUBNET_RANGE=10.1.5.0/24
+TCP_POOL2_VMSS_NAME=pool2-vmss
+TCP_POOL2_INSTANCE_COUNT=1
 
 ########################################################################
 # Shared resources
@@ -81,6 +95,10 @@ STORAGE_SAS=`az storage account generate-sas --account-name $STORAGE_NAME \
 az keyvault secret set --vault-name ${KEYVAULT_NAME} \
     --name storage-sas --value "${STORAGE_SAS}"
 
+# TODO - lock the storage account down to the mgmt subnets
+# TODO - deploy the default haproxy, telegraf, filebeat and packetbeat
+# configurations
+# TODO _ nsg to allow access to 
 #az storage container create --account-name $STORAGE_NAME \
 #    --sas-token $STORAGE_SAS --name $CONTAINER_NAME \
 #    --public-access container 
@@ -140,7 +158,7 @@ az network nsg rule create --resource-group $RESOURCE_GROUP --nsg-name router-ns
     --destination-port-ranges $ROUTER_PORT
 
 az network nsg rule create --resource-group $RESOURCE_GROUP --nsg-name router-nsg \
-    --name allow-incoming-tcp-rule --priority 101 \
+    --name allow-incoming-ssh --priority 101 \
     --description "Allow incoming ssh connections" \
     --protocol tcp --access Allow --direction Inbound \
     --destination-port-ranges 22
@@ -169,3 +187,46 @@ az vmss create --resource-group $RESOURCE_GROUP \
 
 # TODO - update all VMs
 
+
+########################################################################
+# TCP Server pool #1
+########################################################################
+
+# Create the front end router subnet  
+az network vnet subnet create --resource-group ${RESOURCE_GROUP} \
+    --vnet-name ${VNET_NAME} --name $TCP_POOL1_SUBNET \
+    --address-prefix $TCP_POOL1_SUBNET_RANGE
+
+# Create the network security group and rules
+az network nsg create --resource-group $RESOURCE_GROUP --location $LOCATION \
+    --name tcp-pool1-nsg 
+
+az network nsg rule create --resource-group $RESOURCE_GROUP --nsg-name tcp-pool1-nsg \
+    --name allow-incoming-tcp-rule --priority 100 \
+    --description "Allow incoming connections to $ROUTER_PORT" \
+    --protocol tcp --access Allow --direction Inbound \
+    --destination-port-ranges $TCP_POOL_LISTEN_PORT
+
+az network nsg rule create --resource-group $RESOURCE_GROUP --nsg-name router-nsg \
+    --name allow-incoming-ssh --priority 101 \
+    --description "Allow incoming ssh connections" \
+    --protocol tcp --access Allow --direction Inbound \
+    --destination-port-ranges 22
+
+# TODO - find out why the vnet / subnet names don't work
+# Create the VMSS pool
+pool1_subnetid=$(az network vnet subnet show --resource-group ${RESOURCE_GROUP} --vnet-name ${VNET_NAME} --name $TCP_POOL1_SUBNET --query id --output tsv)
+az vmss create --resource-group $RESOURCE_GROUP \
+  --name $TCP_POOL1_VMSS_NAME --location $LOCATION \
+  --image $TCP_POOL_IMAGE --vm-sku $TCP_POOL_SKU \
+  --instance-count $TCP_POOL1_INSTANCE_COUNT \
+  --ssh-key-value "${SSH_KEYDATA}" \
+  --subnet $pool1_subnetid \
+  --storage-sku Premium_LRS \
+  --accelerated-networking \
+  --admin-username $TCP_POOL_USERNAME \
+  --assign-identity \
+  --accelerated-networking \
+  --nsg tcp-pool1-nsg \
+  --upgrade-policy-mode automatic \
+  --custom-data tcpserver-cloud-init.txt
