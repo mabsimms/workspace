@@ -1,0 +1,25 @@
+{
+    "name": "Microsoft.ApplicationInsights.81481ee9-d1d1-42b4-9384-bc3a98e8818b.RemoteDependency",
+    "time": "2017-07-26T22:46:19.000Z",
+    "iKey": "81481ee9-d1d1-42b4-9384-bc3a98e8818b",
+    "tags": {
+        "ai.cloud.roleInstance": "masdev-laptop",
+        "ai.operation.parentId": "TA8R5ub8rHA=",
+        "ai.operation.id": "operation_id",
+        "ai.internal.sdkVersion": "dotnet:2.4.0-32153"
+    },
+    "data": {
+        "baseType": "RemoteDependencyData",
+        "baseData": {
+            "ver": 2,
+            "name": "acitivityName",
+            "id": "activityId",
+            "data": "https://api.twitter.com/twit",
+            "duration": "00:00:01.100",
+            "resultCode": "200",
+            "success": true,
+            "type": "http",
+            "target": "api.twitter.com"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+﻿{
+  "name": "Microsoft.ApplicationInsights.ad3870680fec4caaa471fbdfd7faab6b.RemoteDependency",
+  "time": "2017-07-24T21:27:04.4258050Z",
+  "iKey": "ad387068-0fec-4caa-a471-fbdfd7faab6b",
+  "tags": {
+    "ai.cloud.roleInstance": "sergkanz-dev.redmond.corp.microsoft.com",
+    "ai.operation.parentId": "dcOCEtp7jVw=",
+    "ai.operation.id": "37afab06-03c7-405c-963d-66a542644b52",
+    "ai.internal.sdkVersion": "dotnet:2.4.0-32153"
+  },
+  "data": {
+    "baseType": "RemoteDependencyData",
+    "baseData": {
+      "ver": 2,
+      "name": "POST /twit",
+      "id": "tRCR+keSpJo=",
+      "data": "https://api.twitter.com/twit",
+      "duration": "00:00:01",
+      "resultCode": "200",
+      "success": true,
+      "type": "http",
+      "target": "api.twitter.com"
+    }
+  }
+}

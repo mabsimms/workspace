@@ -1,0 +1,6 @@
+{
+  "fileUris": [
+      "https://tcprouterresources.blob.core.windows.net/scripts/prepare-router-vm.sh"
+  ],
+  "commandToExecute": "./prepare-router-vm.sh"
+}

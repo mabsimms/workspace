@@ -1,0 +1,25 @@
+﻿{
+  "name": "Microsoft.ApplicationInsights.%s.RemoteDependency",
+  "time": "%s",
+  "iKey": "%s",
+  "tags": {
+    "ai.cloud.roleInstance": "%s",
+    "ai.operation.parentId": "%s",
+    "ai.operation.id": "%s",
+    "ai.internal.sdkVersion": "dotnet:2.4.0-32153"
+  },
+  "data": {
+    "baseType": "RemoteDependencyData",
+    "baseData": {
+      "ver": 2,
+      "name": "%s",
+      "id": "%s",
+      "data": "%s",
+      "duration": "00:00:01",
+      "resultCode": "200",
+      "success": true,
+      "type": "%s",
+      "target": "%s"
+    }
+  }
+}
