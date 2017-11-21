@@ -1,0 +1,42 @@
+#cloud-config
+package_upgrade: true
+bootcmd:
+- sudo sysctl -w vm.max_map_count=262144
+# TODO - add the data disk
+runcmd:
+# Install python 
+- sudo apt-get install software-properties-common
+- sudo add-apt-repository ppa:deadsnakes/ppa
+- sudo apt-get update
+- sudo apt-get install python3.6
+
+# Install Azure CLI 
+- echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ wheezy main" | sudo tee /etc/apt/sources.list.d/azure-cli.list
+- sudo apt-key adv --keyserver packages.microsoft.com --recv-keys 52E16F86FEE04B979B07E28DB02C46DF417A0893
+- sudo apt-get install apt-transport-https
+- sudo apt-get update && sudo apt-get install azure-cli
+
+# TODO - change to docker volumes on the mounted data disk
+
+# Install docker
+- sudo apt-get update && sudo apt-get install apt-transport-https ca-certificates curl software-properties-common
+- curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+- sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+- sudo apt-get update && sudo apt-get -y install docker-ce
+
+# Install ELK
+
+- sudo docker pull sebp/elk
+- sudo docker run -dit --restart unless-stopped -p 5601:5601 -p 9200:9200 -p 5044:5044 -v /var/lib/elasticsearch:/var/lib/elasticsearch --name elk sebp/elk
+
+# Install influxdb
+- sudo docker pull influxdb
+- sudo docker run -dit --restart unless-stopped -p 8086:8086 -v /var/lib/influxdb:/var/lib/influxdb influxdb
+
+# Install grafana
+- sudo docker pull grafana/grafana
+- sudo docker run -d -v /var/lib/grafana --name grafana-storage busybox:latest
+- sudo docker run -dit --restart unless-stopped -p 3000:3000 --name=grafana --volumes-from grafana-storage grafana/grafana
+
+
+#- service haproxy restart

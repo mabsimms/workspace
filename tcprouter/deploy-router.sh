@@ -22,6 +22,7 @@ MGMT_DNS_NAME=masrouterjump
 MGMT_USERNAME=jumpboxadmin
 MGMT_VM_SIZE=Standard_DS1_v2
 MGMT_VM_IMAGE=UbuntuLTS
+MGMT_IP_ADDRESS=10.1.2.5
 
 ## TCP router resources
 ROUTER_SUBNET=router-subnet
@@ -80,9 +81,9 @@ STORAGE_SAS=`az storage account generate-sas --account-name $STORAGE_NAME \
 az keyvault secret set --vault-name ${KEYVAULT_NAME} \
     --name storage-sas --value "${STORAGE_SAS}"
 
-az storage container create --account-name $STORAGE_NAME \
-    --sas-token $STORAGE_SAS --name $CONTAINER_NAME \
-    --public-access container 
+#az storage container create --account-name $STORAGE_NAME \
+#    --sas-token $STORAGE_SAS --name $CONTAINER_NAME \
+#    --public-access container 
 
 ########################################################################
 # Create the jumpbox and management resources
@@ -100,12 +101,24 @@ az vm create --resource-group $RESOURCE_GROUP --name $MGMT_VM_NAME \
     --storage-sku Premium_LRS \
     --vnet-name $VNET_NAME \
     --subnet $MGMT_SUBNET \
-    --public-ip-address-dns-name $MGMT_DNS_NAME
-  
+    --public-ip-address-dns-name $MGMT_DNS_NAME \
+    --private-ip-address $MGMT_IP_ADDRESS \
+    --custom-data jumpbox-cloud-init.txt \
+    --data-disk-sizes-gb 1024
+
+# Enable ARM access (reader on this resource group) via MSI for this VM
+az vm assign-identity --resource-group $RESOURCE_GROUP --name $MGMT_VM_NAME
+mgmtvm_spid=$(az resource list --name $MGMT_VM_NAME --resource-group $RESOURCE_GROUP --query [*].identity.principalId --out tsv)
+az role assignment create --assignee $mgmtvm_spid --role 'Reader' \
+    --resource-group $RESOURCE_GROUP
+
+# Copy the management ssh keys to the server
+scp -o StrictHostKeyChecking=no -i ~/.ssh/tcprouter ~/.ssh/tcprouter \
+     $MGMT_USERNAME@$MGMT_DNS_NAME.$LOCATION.cloudapp.azure.com:~/.ssh/id_rsa 
+
 # TODO - set up a ELK/grafana/influxdb box with a fixed IP address
 
-echo "alias ssh-router-jumpbox='ssh -i ~/.ssh/tcprouter $MGMT_USERNAME@$MGMT_DNS_NAME.$LOCATION.cloudapp.azure.com'" >> deployment-shortcuts.sh
-
+echo "alias ssh-router-jumpbox='ssh -o StrictHostKeyChecking=no -i ~/.ssh/tcprouter $MGMT_USERNAME@$MGMT_DNS_NAME.$LOCATION.cloudapp.azure.com'" >> deployment-shortcuts.sh
 
 ########################################################################
 # Front end TCP proxy
@@ -132,10 +145,9 @@ az network nsg rule create --resource-group $RESOURCE_GROUP --nsg-name router-ns
     --protocol tcp --access Allow --direction Inbound \
     --destination-port-ranges 22
 
-# Create the VMSS pool
 # TODO - find out why the vnet / subnet names don't work
+# Create the VMSS pool
 mgmt_subnetid=$(az network vnet subnet show --resource-group ${RESOURCE_GROUP} --vnet-name ${VNET_NAME} --name $MGMT_SUBNET --query id --output tsv)
-
 az vmss create --resource-group $RESOURCE_GROUP \
   --name $ROUTER_VMSS_NAME --location $LOCATION \
   --image $ROUTER_VMSS_IMAGE --vm-sku $ROUTER_SKU \
@@ -147,25 +159,13 @@ az vmss create --resource-group $RESOURCE_GROUP \
   --admin-username $ROUTER_USERNAME \
   --assign-identity \
   --accelerated-networking \
-  --nsg router-nsg 
+  --nsg router-nsg \
+  --upgrade-policy-mode automatic \
+  --custom-data tcprouter-cloud-init.txt
 
 # TODO - add custom data for cloud package install (haproxy, telegraf, beats)
  #     [--upgrade-policy-mode {Automatic, Manual, Rolling}]       
  #              [--custom-data]
 
-# Set the custom script extensions to install and run the baseline configuration
-az storage blob upload --account-name $STORAGE_NAME \
-    --sas-token $STORAGE_SAS --container-name $CONTAINER_NAME \
-    --file prepare-router-vm.sh --name prepare-router-vm.sh
-     
-az vmss extension set \
-    --publisher Microsoft.Azure.Extensions \
-    --version 2.0 \
-    --name CustomScript \
-    --resource-group $RESOURCE_GROUP \
-    --vmss-name $ROUTER_VMSS_NAME \
-    --settings @router_cse_config.json
-          
 # TODO - update all VMs
 
-# TODO - add custom script extension for haproxy + agent installation
