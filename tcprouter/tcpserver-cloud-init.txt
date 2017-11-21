@@ -5,17 +5,6 @@ packages:
 write_files:
   - permissions: 644
     owner: root:root
-    path: /etc/haproxy/haproxy.cfg
-    content: |
-        # TODO
-  - permissions: 644
-    owner: root:root
-    path: /etc/packetbeat/packetbeat.yml
-    content: |
-        # TODO 
-
-  - permissions: 644
-    owner: root:root
     path: /etc/telegraf/telegraf.conf
     content: |    
       [agent]
@@ -63,12 +52,9 @@ runcmd:
 - sudo docker run -dit --restart unless-stopped -v /etc/telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro telegraf
 
 # Pull down service packages
-- sudo docker pull haproxy:1.7
+- sudo docker pull alpine/socat
 
-# Install packetbeat
-- sudo docker pull docker.elastic.co/beats/packetbeat:7.0.0-alpha1
-- sudo docker run --cap-add=NET_ADMIN --network=host -v /etc/packetbeat/packetbeat.yml:/usr/share/packetbeat/packetbeat.yml docker.elastic.co/beats/packetbeat:7.0.0-alpha1
-
-# Run haproxy
+# Run socat
+- sudo docker run -dit --restart unless-stopped -p 5000:5000 alpine/socat -d -d -lmlocal2 -v tcp-l:5000,fork,reuseaddr exec:'/bin/cat'
 # - docker run -d --name my-running-haproxy -v /path/to/etc/haproxy:/usr/local/etc/haproxy:ro haproxy:1.7
 #- service haproxy restart
