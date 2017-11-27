@@ -1,6 +1,0 @@
-﻿  AiTemplateCPP.cpp
-AiTemplateCPP.cpp(64): warning C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\time.h(495): note: see declaration of 'gmtime'
-AiTemplateCPP.cpp(86): warning C4996: 'gmtime': This function or variable may be unsafe. Consider using gmtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\time.h(495): note: see declaration of 'gmtime'
-  AiTemplateCPP.vcxproj -> C:\code\workspace\AiTemplateCPP\Debug\AiTemplateCPP.exe
