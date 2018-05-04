@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option csharp_namespace = "AppInsights.Test";
+
+message TelemetryItem { 
+    int64 Id = 1;
+    string Name = 2;
+}
+
+message TelemetryItemBatch { 
+    repeated TelemetryItem Items = 1;
+}
