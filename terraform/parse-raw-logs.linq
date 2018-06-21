@@ -18,8 +18,9 @@ void Main()
 		})
 		.ToArray()
 	;
-	
- 
+
+
+
 	var apiCalls = contents.Where(
 		c => c.Message.Contains("GET") 
 	 || c.Message.Contains("PUT") 
@@ -31,82 +32,118 @@ void Main()
 		.ToArray()
 	;
 
-	var operationCalls = contents
-		.Where(c => c.Message.Contains("GET"))		
-		.Where(c => c.Message.Contains("/operations/"));
-	//operationCalls.Dump("async operations");
-
-	var apis = GetArmRequests(contents, apiCalls);
-	
-//	
-//	var apis = apiCalls.Select(c => new
-//	{
-//        Request = c,
-//		Response = FindMatchingResponse(contents, c),
-//	})
-//	.Select(c => new ArmRequest
-//	{
-//		Verb = GetVerb(c.Request.Message),
-//		Elapsed = c.Response.Timestamp.Subtract(c.Request.Timestamp),
-//		ResponseCode = contents[c.Response.Index+1].Message.Substring(contents[c.Response.Index+1].Message.IndexOf(':')+2),
-//		Request = c.Request,
-//		Response = c.Response,
-//		ResourceId = c.Request.Message.Substring(
-//			c.Request.Message.IndexOf("/subscriptions")).Replace(" HTTP/1.1", "")
-//	})	
-	//.Dump()
-	;
-	
-	// Look for async (201) calls, then find their matching GET requests and collapse
-	var asyncApis = apis
-		.Where(a => a.ResponseCode.Contains("201"))
-		.Select(a => new
-		{
-		    request = a,
-			asyncId = FindAsyncOperationId(contents, a)		
-		});
-		
-	//asyncApis.Dump("async");
-	
-	var operationsApis = apis.Where(a => a.Request.Message.Contains("operations"));
-	//operationsApis.Dump("operations");
+	var apis = GetArmRequests(contents, apiCalls);	
+	CorrelateAsyncCalls(apis, contents);
 
 	int x = 1;
+		
+	// Add the primary operations
+	var traces = new List<Trace>();
+	var relations = new List<Relationship>();
 	
-	var traces = apis.Select(a => new Trace
+	// Add the sub operations
+	int traceIndex = 1;
+	foreach (var api in apis)
+	{	
+		long endNanos;
+		
+		if (api.OperationChecks != null && api.OperationChecks.Length > 0)
+			endNanos = api.OperationChecks.Max(oc => oc.Response.Timestamp).Ticks * 100;
+		else
+			endNanos = api.Response.Timestamp.Ticks * 100;
+			
+		var trace = new Trace
+		{
+			id = traceIndex++,
+			name = api.Verb + "/" + GetResource(api.ResourceId),
+			resultType = "SUCCESS",
+			hidden = false,
+			systemHidden = false,
+			startNanos = api.Request.Timestamp.Ticks * 100,
+			endNanos = endNanos
+		};
+		traces.Add(trace);
+		
+		var relation = new Relationship() { 
+			relationship = "PARENT_OF",
+			from = 0,
+			to = trace.id
+		};
+		relations.Add(relation);
+		
+		if (api.OperationChecks != null && api.OperationChecks.Length > 0)
+		{
+			var subTraces = api.OperationChecks.Select(oc => new Trace()
+			{
+                id = traceIndex++,
+				name = "CheckStatus" + "/" + GetResource(api.ResourceId),
+				resultType = "SUCCESS",
+				hidden = false,
+				systemHidden = false,
+				startNanos = oc.Request.Timestamp.Ticks * 100,
+				endNanos = oc.Response.Timestamp.Ticks * 100
+			}).ToArray();
+			
+			traces.AddRange(subTraces);
+
+			var subRelations = subTraces.Select(t => new Relationship()
+			{
+				relationship = "PARENT_OF",
+				from = trace.id,
+				to = t.id
+			});
+			
+			relations.AddRange(subRelations);
+		}		
+	}
+
+	traces.Insert(0, new Trace()
 	{
-		id = x++,
-		name = GetResource(a.ResourceId),
+		id = 0,
+		name = "CreateVM",
 		resultType = "SUCCESS",
 		hidden = false,
 		systemHidden = false,
-		startNanos = a.Request.Timestamp.Ticks * 100,
-		endNanos = a.Response.Timestamp.Ticks * 100
-	})
-	.ToArray()
-	;
-	
-	
-	var relations = traces.Select(t => new Relationship
-	{
-        relationship = "PARENT_OF",
-		from = 0,
-		to = t.id
-	})
-	.ToArray()
-	;
-	
+		startNanos = traces.Min(t => t.startNanos),
+		endNanos = traces.Max(t => t.endNanos)
+	});
+
+
 	var graph = new Graph { 
-		 traces = traces,
-		 relationships = relations
+		 traces = traces.ToArray(),
+		 relationships = relations.ToArray()
 	};
 
-//	graph.traces.Dump("test");
-//	Console.WriteLine(
-//		JsonConvert.SerializeObject(graph));
-//		
+	//graph.traces.Dump("test");
+	Console.WriteLine(
+		JsonConvert.SerializeObject(graph));
+		
 
 	//apiCalls.Dump();
+}
+
+void CorrelateAsyncCalls(ArmRequest[] apis, TerraformRecord[] contents)
+{
+	var operationCalls = contents
+		.Where(c => c.Message.Contains("GET"))
+		.Where(c => c.Message.Contains("/operations/"))
+		.ToArray();
+	var operations = GetArmRequests(contents, operationCalls);
+//	operations.Select(o => o.ResourceId ).Dump("operations");
+	
+	foreach (var a in apis)
+	{
+		if (!a.ResponseCode.Contains("201"))
+			continue;
+					
+		var asyncId = FindAsyncOperationId(contents, a);
+		
+		var subOperations = operations.Where(o => asyncId.Contains(o.ResourceId));
+		a.OperationChecks = subOperations.ToArray(); 
+	}
+	
+	//asyncApis.Dump("async");
+	//operationsApis.Dump("operations")
 }
 
 public ArmRequest[] GetArmRequests(TerraformRecord[] contents, TerraformRecord[] apiCalls)
@@ -214,6 +251,8 @@ public class ArmRequest
 	public string ResponseCode { get; set; }
 	public TimeSpan Elapsed { get; set; }
 	public string ResourceId { get; set; }
+	
+	public ArmRequest[] OperationChecks { get; set; }
 }
 
 public class Trace

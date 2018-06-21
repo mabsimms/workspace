@@ -108,6 +108,7 @@ namespace IpcTest
 
                 foreach (var item in referenceSet) 
                 { 
+                    // No batching here.  this could be way more efficient.
                     conn.Publish(runConfiguration.Subject, item);    
                     itemsSent++;
 

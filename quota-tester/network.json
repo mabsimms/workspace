@@ -1,0 +1,374 @@
+[
+  {
+    "additionalProperties": {},
+    "currentValue": "3",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/VirtualNetworks",
+    "limit": "50",
+    "localName": "Virtual Networks",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Virtual Networks",
+      "value": "VirtualNetworks"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/StaticPublicIPAddresses",
+    "limit": "20",
+    "localName": "Static Public IP Addresses",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Static Public IP Addresses",
+      "value": "StaticPublicIPAddresses"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "3",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/NetworkSecurityGroups",
+    "limit": "100",
+    "localName": "Network Security Groups",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Network Security Groups",
+      "value": "NetworkSecurityGroups"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "2",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/PublicIPAddresses",
+    "limit": "60",
+    "localName": "Public IP Addresses",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Public IP Addresses",
+      "value": "PublicIPAddresses"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "3",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/NetworkInterfaces",
+    "limit": "24000",
+    "localName": "Network Interfaces",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Network Interfaces",
+      "value": "NetworkInterfaces"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/LoadBalancers",
+    "limit": "100",
+    "localName": "Load Balancers",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Load Balancers",
+      "value": "LoadBalancers"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/ApplicationGateways",
+    "limit": "50",
+    "localName": "Application Gateways",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Application Gateways",
+      "value": "ApplicationGateways"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RouteTables",
+    "limit": "100",
+    "localName": "Route Tables",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Route Tables",
+      "value": "RouteTables"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RouteFilters",
+    "limit": "1000",
+    "localName": "Route Filters",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Route Filters",
+      "value": "RouteFilters"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/NetworkWatchers",
+    "limit": "1",
+    "localName": "Network Watchers",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Network Watchers",
+      "value": "NetworkWatchers"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/PacketCaptures",
+    "limit": "100",
+    "localName": "Packet Captures",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Packet Captures",
+      "value": "PacketCaptures"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/ApplicationSecurityGroups",
+    "limit": "500",
+    "localName": "Application Security Groups.",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Application Security Groups.",
+      "value": "ApplicationSecurityGroups"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/DdosProtectionPlans",
+    "limit": "1",
+    "localName": "DDoS Protection Plans.",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "DDoS Protection Plans.",
+      "value": "DdosProtectionPlans"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/ServiceEndpointPolicies",
+    "limit": "200",
+    "localName": "Service Endpoint Policies",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Service Endpoint Policies",
+      "value": "ServiceEndpointPolicies"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/IntendedPolicies",
+    "limit": "200",
+    "localName": "Intended Policies",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Intended Policies",
+      "value": "IntendedPolicies"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/DnsServersPerVirtualNetwork",
+    "limit": "9",
+    "localName": "DNS servers per Virtual Network",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "DNS servers per Virtual Network",
+      "value": "DnsServersPerVirtualNetwork"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/SubnetsPerVirtualNetwork",
+    "limit": "1000",
+    "localName": "Subnets per Virtual Network",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Subnets per Virtual Network",
+      "value": "SubnetsPerVirtualNetwork"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/IPConfigurationsPerVirtualNetwork",
+    "limit": "16384",
+    "localName": "IP Configurations per Virtual Network",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "IP Configurations per Virtual Network",
+      "value": "IPConfigurationsPerVirtualNetwork"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/PeeringsPerVirtualNetwork",
+    "limit": "10",
+    "localName": "Peerings per Virtual Network",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Peerings per Virtual Network",
+      "value": "PeeringsPerVirtualNetwork"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/SecurityRulesPerNetworkSecurityGroup",
+    "limit": "1000",
+    "localName": "Security rules per Network Security Group",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Security rules per Network Security Group",
+      "value": "SecurityRulesPerNetworkSecurityGroup"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/SecurityRulesPerIntendedPolicy",
+    "limit": "100",
+    "localName": "Security rules per Intended Policy",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Security rules per Intended Policy",
+      "value": "SecurityRulesPerIntendedPolicy"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RoutesPerIntendedPolicy",
+    "limit": "100",
+    "localName": "Routes per Intended Policy",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Routes per Intended Policy",
+      "value": "RoutesPerIntendedPolicy"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/SecurityRuleAddressesOrPortsPerNetworkSecurityGroup",
+    "limit": "2000",
+    "localName": "Security rules addresses or ports per Network Security Group",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Security rules addresses or ports per Network Security Group",
+      "value": "SecurityRuleAddressesOrPortsPerNetworkSecurityGroup"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/InboundRulesPerLoadBalancer",
+    "limit": "150",
+    "localName": "Inbound Rules per Load Balancer",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Inbound Rules per Load Balancer",
+      "value": "InboundRulesPerLoadBalancer"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/FrontendIPConfigurationPerLoadBalancer",
+    "limit": "10",
+    "localName": "Frontend IP Configurations per Load Balancer",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Frontend IP Configurations per Load Balancer",
+      "value": "FrontendIPConfigurationPerLoadBalancer"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/OutboundNatRulesPerLoadBalancer",
+    "limit": "5",
+    "localName": "Outbound NAT Rules per Load Balancer",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Outbound NAT Rules per Load Balancer",
+      "value": "OutboundNatRulesPerLoadBalancer"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RoutesPerRouteTable",
+    "limit": "100",
+    "localName": "Routes per Route Table",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Routes per Route Table",
+      "value": "RoutesPerRouteTable"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/SecondaryIPConfigurationsPerNetworkInterface",
+    "limit": "256",
+    "localName": "Secondary IP Configurations per Network Interface",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Secondary IP Configurations per Network Interface",
+      "value": "SecondaryIPConfigurationsPerNetworkInterface"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/InboundRulesPerNetworkInterface",
+    "limit": "500",
+    "localName": "Inbound rules per Network Interface",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Inbound rules per Network Interface",
+      "value": "InboundRulesPerNetworkInterface"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RouteFilterRulesPerRouteFilter",
+    "limit": "1",
+    "localName": "Route filter rules per Route Filter",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Route filter rules per Route Filter",
+      "value": "RouteFilterRulesPerRouteFilter"
+    }
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": "0",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/locations/eastus/usages/RouteFiltersPerExpressRouteBgpPeering",
+    "limit": "1",
+    "localName": "Route filters per Express route BGP Peering",
+    "name": {
+      "additionalProperties": {},
+      "localizedValue": "Route filters per Express route BGP Peering",
+      "value": "RouteFiltersPerExpressRouteBgpPeering"
+    }
+  }
+]

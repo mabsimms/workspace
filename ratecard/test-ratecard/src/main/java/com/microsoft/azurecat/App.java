@@ -53,7 +53,8 @@ public class App
         }
     }
 
-    public static String Run(String rateCardUrl, String token) throws MalformedURLException, IOException
+    public static String Run(String rateCardUrl, String token) 
+        throws MalformedURLException, IOException
     { 
         URL requestURL = new URL(rateCardUrl);
         HttpsURLConnection httpsUrlConnection = (HttpsURLConnection) requestURL.openConnection();
@@ -63,19 +64,12 @@ public class App
 
         System.out.println("Downloading rate card from " + rateCardUrl);
 
-        try (final InputStreamReader in = new InputStreamReader((InputStream)httpsUrlConnection.getContent())) 
+        try (final InputStreamReader in = new InputStreamReader(
+            (InputStream)httpsUrlConnection.getContent())) 
         {
             String text = CharStreams.toString(in);
-            return text;
-
-            //AzureRateCardPayload rateCardPayload = new Gson().fromJson(in, AzureRateCardPayload.class);
-            //return rateCardPayload;
-        }
-        catch (IOException ex) 
-        {    
-            throw ex; 
-        }
-
+            return text;            
+        }        
     }
 
     public static BearerToken getAzureApplicationCredentialToken(URL tokenFile) throws IOException
