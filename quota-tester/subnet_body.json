@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "SubnetCountLimitReached",
+    "message": "A virtual network cannot have more than 1000 subnets.",
+    "details": []
+  }
+}

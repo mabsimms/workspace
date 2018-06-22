@@ -1,0 +1,18 @@
+{
+ "body": "{\r\n  \"error\": {\r\n    \"code\": \"SubnetCountLimitReached\",\r\n    \"message\": \"A virtual network cannot have more than 1000 subnets.\",\r\n    \"details\": []\r\n  }\r\n}",
+ "headers": {
+  "Cache-Control": "no-cache",
+  "Pragma": "no-cache",
+  "Content-Length": "155",
+  "Content-Type": "application/json; charset=utf-8",
+  "Expires": "-1",
+  "x-ms-request-id": "09d14282-bc5f-42e2-a7f7-d15066ce0327",
+  "x-ms-correlation-request-id": "95bc6664-29ce-4993-b0a0-de20a83ce936",
+  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "Server": "Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0",
+  "x-ms-ratelimit-remaining-subscription-writes": "1194",
+  "x-ms-routing-request-id": "WESTUS2:20180622T015210Z:95bc6664-29ce-4993-b0a0-de20a83ce936",
+  "X-Content-Type-Options": "nosniff",
+  "Date": "Fri, 22 Jun 2018 01:52:10 GMT"
+ }
+}
