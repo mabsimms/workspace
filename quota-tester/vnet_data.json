@@ -1,0 +1,18 @@
+{
+ "body": "{\r\n  \"error\": {\r\n    \"code\": \"VnetCountLimitReached\",\r\n    \"message\": \"Cannot create more than 50 virtual networks for this subscription in this region.\",\r\n    \"details\": []\r\n  }\r\n}",
+ "headers": {
+  "Cache-Control": "no-cache",
+  "Pragma": "no-cache",
+  "Content-Length": "181",
+  "Content-Type": "application/json; charset=utf-8",
+  "Expires": "-1",
+  "x-ms-request-id": "4ac9b7c4-2d0f-48a0-9f63-579a01982046",
+  "x-ms-correlation-request-id": "84c46251-852a-4a15-b90a-c37d903d45d8",
+  "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+  "Server": "Microsoft-HTTPAPI/2.0, Microsoft-HTTPAPI/2.0",
+  "x-ms-ratelimit-remaining-subscription-writes": "1199",
+  "x-ms-routing-request-id": "WESTUS2:20180712T055512Z:84c46251-852a-4a15-b90a-c37d903d45d8",
+  "X-Content-Type-Options": "nosniff",
+  "Date": "Thu, 12 Jul 2018 05:55:12 GMT"
+ }
+}

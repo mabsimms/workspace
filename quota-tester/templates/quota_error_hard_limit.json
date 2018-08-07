@@ -1,0 +1,18 @@
+{
+    "error": {
+        "code": "BadRequest",
+        "message": "Cannot create more than 100 virtual networks for subscription [subid] in region [region]",
+        "target": "VirtualNetworks",
+        "additionalInfo": [
+            {
+                "type": "QuotaViolation",
+                "info": {
+                    "limit" : 100,
+                    "target" : "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Network/virtualNetworks/eastus",
+                    "region": "eastus",
+                    "docLink" : "https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits#networking-limits"
+                }
+            }
+        ]
+    }
+}

@@ -1,0 +1,57 @@
+{
+    "error": {
+      "code": "VnetCountLimitReached",
+      "message": "Cannot create more than 50 virtual networks for this subscription in this region.",
+      "details": []
+    }
+  }
+  
+  
+  {
+    "error": {
+      "code": "QuotaLimitReached",
+      "message": "Cannot create more than 50 virtual networks for this subscription in this region.",
+      "details": [ {
+        "code" : "VirtualNetworks",
+        "target" : "TODO - container id convention for non resource group stuff",
+        "message": "Cannot create more than 50 virtual networks for subscription [subid] in region [region]",
+        "limit" : 50,        
+        "region": "eastus",
+        "supportLink" : ""
+      }
+      ]
+    }
+  }
+  
+  {
+    "error": {
+      "code": "QuotaLimitReached",
+      "quota" : { 
+          "bucket" : "VirtualNetworks",
+          "limit" : 100,
+          "container" : "TODO - container id convention for non resource group stuff",
+          "region": "eastus",
+          "supportLink" : ""
+      },
+      "message": "Cannot create more than 100 virtual networks for subscription [subid] in region [region]",
+      "details": []
+    }
+  }
+
+  {
+    "error": {
+      "code": "QuotaLimitReached",
+      "quota" : { 
+          "bucket" : "SubnetsPerVirtualNetwork",
+          "limit" : 1000,
+          "container" : "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/resourceGroups/breakvnet-rg/providers/Microsoft.Network/virtualNetworks/testvnet0-vnet",
+          "region": "eastus",
+          "docLink" : ""
+      },
+      "message": "Virtual network [testvnet0-vnet] in resource group [breakvnet-rg] cannot have more than 1000 subnets",
+      "details": []
+    }
+  }
+
+  "code": "SubnetCountLimitReached",
+  "message": "A virtual network cannot have more than 1000 subnets.",

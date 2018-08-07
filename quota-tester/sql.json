@@ -1,0 +1,22 @@
+[
+  {
+    "additionalProperties": {},
+    "currentValue": 1.0,
+    "displayName": "Regional Server Quota for eastus",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Sql/locations/eastus/usages/ServerQuota",
+    "limit": 150.0,
+    "name": "ServerQuota",
+    "type": "Microsoft.Sql/locations/usages",
+    "unit": "Count"
+  },
+  {
+    "additionalProperties": {},
+    "currentValue": 0.0,
+    "displayName": "Free Database Count per Subscription for eastus",
+    "id": "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/providers/Microsoft.Sql/locations/eastus/usages/SubscriptionFreeDatabaseCount",
+    "limit": 1.0,
+    "name": "SubscriptionFreeDatabaseCount",
+    "type": "Microsoft.Sql/locations/usages",
+    "unit": "Count"
+  }
+]

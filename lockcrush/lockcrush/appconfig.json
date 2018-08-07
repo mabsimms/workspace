@@ -1,0 +1,39 @@
+{
+  "metrics": {
+    "influxdb": {
+      "enabled": true,
+      "url": "http://192.168.189.130:8086",
+      "database": "metrics"
+    },
+    "console": {
+      "enabled": false
+    }
+  },
+
+  "dataSource": {
+    "simulated": {
+      "subscriptionCount": 10000,
+      "minDwellTime": "00:00:00.250",
+      "jitterDwellTime": "00:00:00.500"
+    }
+  },
+
+  "cache": {
+    "subscription": {
+      "maximumMemory": 2000,
+      "pollingInterval": "00:00:30",
+      "staleThreshold": "00:30:00",
+      "staleJitter": "00:00:30"
+    }
+  },
+
+  "cacheHammer": {
+    "minDwellTime": "00:00:00.100",
+    "jitterDwellTime": "00:00:00.050"
+  },
+
+  "prefillCache": true,
+  "prefillPercentage":  90,
+  "maxWorkers": 5000,
+  "workerDwellTime":  "00:00:5"
+}

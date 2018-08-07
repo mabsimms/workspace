@@ -101,9 +101,9 @@ class NetworkBreaker:
 
             # If created failed, we've likely hit the quota.  Delete the last item created to leave
             # the subscription in a wonderfully fragile state
-            if not created: 
-                self.delete_vnet(index)
-                return 
+#            if not created: 
+ #               self.delete_vnet(index)
+  #              return 
 
     ########################################## Subnets ##############################################
     def create_subnet(self, index, vnet_name, subnet_prefix = "testsubnet{}-subnet"):
@@ -239,8 +239,8 @@ if network_metadata_file:
 network = NetworkBreaker(credentials, subscription_id, location)
 #network.cleanup_resource_group()
 
-#vnet_target = resource_metadata['VirtualNetworks'].limit + 1
-#network.break_vnet(vnet_target)
+vnet_target = resource_metadata['VirtualNetworks'].limit + 1
+network.break_vnet(vnet_target)
 
-subnet_target = resource_metadata['SubnetsPerVirtualNetwork'].limit + 1
-network.break_subnet(subnet_target)
+#subnet_target = resource_metadata['SubnetsPerVirtualNetwork'].limit + 1
+#network.break_subnet(subnet_target)

@@ -1,0 +1,7 @@
+{
+  "error": {
+    "code": "VnetCountLimitReached",
+    "message": "Cannot create more than 50 virtual networks for this subscription in this region.",
+    "details": []
+  }
+}

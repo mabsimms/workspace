@@ -1,0 +1,18 @@
+{
+    "error": {
+        "code": "BadRequest",
+        "message": "Cannot create more than 1000 subnets in virtual network testvnet10-vnet in subscription 3e9c25fc-55b3-4837-9bba-02b6eb204331 in region eastus",
+        "target": "SubnetsPerVirtualNetwork",
+        "additionalInfo": [
+            {
+                "type": "QuotaViolation",
+                "info": {
+                    "limit" : 1000,
+                    "target" : "/subscriptions/3e9c25fc-55b3-4837-9bba-02b6eb204331/resourceGroups/breakvnet-rg/providers/Microsoft.Network/virtualNetworks/testvnet10-vnet",
+                    "region": "eastus",
+                    "docLink" : "https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits#networking-limits"
+                }
+            }
+        ]
+    }
+}
